@@ -1,9 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout title="RSNN CartPole - Chase McCoy">
-  <h1 style="font-size: 2.5rem; font-weight: 600; color: #333333; margin-bottom: 0.7rem;">
+  <h1 style="font-size: 2.5rem; font-weight: 600; color: #333333; margin-bottom: 0.7rem; margin-top: 0.7rem;">
     Evolving a Recurrent Spiking Neural Network on a Partially Observable Variant of CartPole
   </h1>
   <div style="margin-bottom: 2.2rem;">
@@ -52,7 +54,7 @@ import Layout from "../../layouts/Layout.astro";
           Evolved RSNN (Generation 272) <span style="color: #888; font-weight: 400;">(avg: 1002.50)</span>
         </h5>
         <video 
-          src="/src/assets/rsnnvids/visualization_recording-3.mp4" 
+          src={`${baseUrl}src/assets/rsnnvids/visualization_recording-3.mp4`} 
           autoplay 
           loop 
           muted 
@@ -97,7 +99,7 @@ import Layout from "../../layouts/Layout.astro";
             Go Left <span style="color: #888; font-weight: 400;">(avg: 9.36)</span>
           </h5>
           <video 
-            src="/src/assets/rsnnvids/go_left_policy.mp4" 
+            src={`${baseUrl}src/assets/rsnnvids/go_left_policy.mp4`} 
             autoplay 
             loop 
             muted 
@@ -111,7 +113,7 @@ import Layout from "../../layouts/Layout.astro";
             Go Right <span style="color: #888; font-weight: 400;">(avg: 9.36)</span>
           </h5>
           <video 
-            src="/src/assets/rsnnvids/go_right_policy.mp4" 
+            src={`${baseUrl}src/assets/rsnnvids/go_right_policy.mp4`} 
             autoplay 
             loop 
             muted 
@@ -125,7 +127,7 @@ import Layout from "../../layouts/Layout.astro";
             Random <span style="color: #888; font-weight: 400;">(avg: 22.25)</span>
           </h5>
           <video 
-            src="/src/assets/rsnnvids/random_policy.mp4" 
+            src={`${baseUrl}src/assets/rsnnvids/random_policy.mp4`} 
             autoplay 
             loop 
             muted 
@@ -139,7 +141,7 @@ import Layout from "../../layouts/Layout.astro";
             Naive <span style="color: #888; font-weight: 400;">(avg: 42.12)</span>
           </h5>
           <video 
-            src="/src/assets/rsnnvids/naive_policy.mp4" 
+            src={`${baseUrl}src/assets/rsnnvids/naive_policy.mp4`} 
             autoplay 
             loop 
             muted 
@@ -173,7 +175,7 @@ import Layout from "../../layouts/Layout.astro";
       <div style="display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;">
         <div>
           <img 
-            src="/src/assets/rsnn2.png" 
+            src={`${baseUrl}src/assets/rsnn2.png`} 
             alt="RSNN architecture diagram"
             style="max-width: 340px; width: 100%; height: 220px; object-fit: contain; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background: #fff;"
           />
@@ -183,7 +185,7 @@ import Layout from "../../layouts/Layout.astro";
         </div>
         <div>
           <img 
-            src="/src/assets/lif.png" 
+            src={`${baseUrl}src/assets/lif.png`} 
             alt="Leaky Integrate-and-Fire (LIF) neuron model diagram"
             style="max-width: 340px; width: 100%; height: 220px; object-fit: contain; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background: #fff;"
           />
