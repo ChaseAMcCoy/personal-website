@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://chaseamccoy.github.io/personal-website/',
-    base: '/personal-website/', // ✅ critical for GitHub Pages
+    site: 'https://chasemccoy.dev', // your custom domain
+    base: '/', // root path
     outDir: './dist',
-  });
+});
