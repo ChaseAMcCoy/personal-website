@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://ChaseAMcCoy.github.io/',
-    outDir: './dist', // default, but explicit is fine
+    site: 'https://chaseamccoy.github.io/personal-website/',
+    base: '/personal-website/', // ✅ critical for GitHub Pages
+    outDir: './dist',
   });
