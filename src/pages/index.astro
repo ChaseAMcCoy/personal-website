@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import badgePhoto from "../assets/chase.jpg";
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Chase McCoy">
@@ -49,7 +51,7 @@ import badgePhoto from "../assets/chase.jpg";
     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem;">
       <li>
         <a 
-          href="/projects/rsnn-cartpole"
+          href={`${baseUrl}projects/rsnn-cartpole`}
           style="
             font-size: 1rem;
             color: #1565c0;
@@ -76,7 +78,7 @@ import badgePhoto from "../assets/chase.jpg";
     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem;">
       <li>
         <a 
-          href="/opinions/minecraft-bot"
+          href={`${baseUrl}opinions/minecraft-bot`}
           style="
             font-size: 1rem;
             color: #1565c0;
