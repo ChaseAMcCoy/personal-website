@@ -1,0 +1,229 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="RSNN CartPole - Chase McCoy">
+  <div style="margin-bottom: 2rem;">
+    <a href="/" style="color: #666666; text-decoration: none; font-size: 0.9rem;">← Back to Home</a>
+  </div>
+  
+  <h1 style="font-size: 2.5rem; font-weight: 600; color: #333333; margin-bottom: 0.7rem;">
+    Evolving a Recurrent Spiking Neural Network on a Partially Observable Variant of CartPole
+  </h1>
+  <div style="margin-bottom: 2.2rem;">
+    <a 
+      href="https://github.com/ChaseAMcCoy/CartPoleRSNN" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45em;
+        background: #f4f4f7;
+        color: #2d2d2d;
+        border: none;
+        padding: 0.45rem 1rem;
+        border-radius: 24px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.03);
+        transition: background 0.18s;
+        text-decoration: none;
+        position: relative;
+        top: -0.1rem;
+        opacity: 0.87;
+      "
+      onmouseover="this.style.background='#ececf0';this.style.opacity='1';"
+      onmouseout="this.style.background='#f4f4f7';this.style.opacity='.87';"
+      aria-label="View on GitHub"
+    >
+      <svg height="1.1em" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="margin-bottom: -2px;">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49C4 14.09 3.48 12.97 3.34 12.5c-.09-.23-.48-.92-.82-1.11-.28-.16-.68-.56-.01-.57.63-.01 1.08.58 1.23.82.72 1.19 1.87.85 2.33.65.07-.52.28-.85.51-1.05-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 4.69c.68.003 1.36.092 2.01.27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.17 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.74.54 1.49 0 1.08-.01 1.95-.01 2.22 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+      </svg>
+      <span style="font-size: 0.93em;">GitHub</span>
+    </a>
+  </div>
+
+  <!-- Abstract Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.25rem; font-weight: 600; color: #333333; margin-bottom: 0.7rem;">Abstract</h2>
+    <p style="color: #555555; line-height: 1.6;">
+      This project explores the use of recurrent spiking neural networks (RSNNs) to solve a partially observable version of the classic CartPole control problem. The agent's observations are limited to only the cart's position and the pole's angle, with both the cart velocity and the pole’s angular velocity omitted. As a result, the agent must implicitly infer these hidden variables within its recurrent neurons. The internal parameters of each neuron, as well as the topology and weights of a leaky integrate-and-fire RSNN are evolved using a genome based evolutionary algorithm. The performance is compared to several baseline policies, including random action selection and the naive policy for the partially observable state. Results show that the evolved RSNN reliably balances the pole by implicitly estimating the missing velocities, outperforming all baselines policies.
+    </p>
+    <div style="margin-bottom: 2.2rem; margin-top: 2.2rem;">
+      <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+        <h5 style="font-size: 1.05rem; font-weight: 600; color: #333333; margin-top: 0; margin-bottom: 0.5rem;">
+          Evolved RSNN (Generation 272) <span style="color: #888; font-weight: 400;">(avg: 1002.50)</span>
+        </h5>
+        <video 
+          src="/src/assets/rsnnvids/visualization_recording-3.mp4" 
+          autoplay 
+          loop 
+          muted 
+          playsinline
+          style="width: 100%; border-radius: 4px; background: #000;">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- CartPole Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; color: #333333; margin-bottom: 1rem;">CartPole</h2>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      CartPole is a classic benchmark in reinforcement learning and control theory. The environment consists of a cart that can move left or right along a track, with a pole hinged to its top. The goal is to keep the pole balanced upright by applying forces to the cart to move it left or right. The cart itself must also stay on the screen. In the standard version, the agent receives four observations at each timestep: the cart's position, cart velocity, pole angle, and pole angular velocity.
+    </p>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      In this project, the environment is made more challenging by restricting the agent's observations to only the cart's position and the pole's angle. All velocity information is hidden, making the problem partially observable. This means the agent must infer the missing velocities from the sequence of past observations, rather than having direct access to them. This restricted version is far closer to how humans approach this problem - the only things we can see are the position of the cart and pole, and we infer the velocities within our brains based on our memory of the previous frames.
+    </p>
+    <h3 style="font-size: 1.15rem; font-weight: 600; color: #333333; margin-bottom: 1rem;">Simple Policy Baselines</h3>
+    <p style="color: #555555; margin-bottom: 1.2rem; line-height: 1.6;">
+      Simple, non-neural network policies:
+      <ul style="color: #555555; margin: 0 0 1.2rem 1.2rem; line-height: 1.6; font-size: 1rem;">
+        <li>
+          <strong>Go Left / Go Right:</strong> Always pushes the cart in the same direction (left or right) at every timestep, regardless of the pole's state.
+        </li>
+        <li>
+          <strong>Random:</strong> At each timestep, randomly chooses to push the cart left or right, with no regard for the environment state.
+        </li>
+        <li>
+          <strong>Naive:</strong> At each timestep, applies force to the cart in the direction that would reduce the pole's angle (e.g., if the pole is leaning left, push left). Without memory, this is the best approach available using the given information. However, without any implicit calculation of velocity, this policy is purely reactive and eventually loses control of the pole.
+        </li>
+      </ul>
+      These baselines highlight the limitations of memoryless, reactive strategies in a partially observable setting.
+    </p>
+    <div style="height: 1.5rem;"></div>
+    <div style="margin-bottom: 1.2rem;">
+      <div style="display: flex; flex-wrap: nowrap; gap: 1.2rem; justify-content: flex-start;">
+        <div style="background: #f8f9fa; padding: 0.4rem 0.7rem 0.5rem 0.7rem; border-radius: 8px; width: 160px; display: flex; flex-direction: column;">
+          <h5 style="font-size: 0.92rem; font-weight: 600; color: #333333; margin-top: 0; margin-bottom: 0.25rem; white-space: nowrap;">
+            Go Left <span style="color: #888; font-weight: 400;">(avg: 9.36)</span>
+          </h5>
+          <video 
+            src="/src/assets/rsnnvids/go_left_policy.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            style="width: 100%; border-radius: 4px; background: #000; height: 120px; object-fit: cover;">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div style="background: #f8f9fa; padding: 0.4rem 0.7rem 0.5rem 0.7rem; border-radius: 8px; width: 160px; display: flex; flex-direction: column;">
+          <h5 style="font-size: 0.92rem; font-weight: 600; color: #333333; margin-top: 0; margin-bottom: 0.25rem; white-space: nowrap;">
+            Go Right <span style="color: #888; font-weight: 400;">(avg: 9.36)</span>
+          </h5>
+          <video 
+            src="/src/assets/rsnnvids/go_right_policy.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            style="width: 100%; border-radius: 4px; background: #000; height: 120px; object-fit: cover;">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div style="background: #f8f9fa; padding: 0.4rem 0.7rem 0.5rem 0.7rem; border-radius: 8px; width: 160px; display: flex; flex-direction: column;">
+          <h5 style="font-size: 0.92rem; font-weight: 600; color: #333333; margin-top: 0; margin-bottom: 0.25rem; white-space: nowrap;">
+            Random <span style="color: #888; font-weight: 400;">(avg: 22.25)</span>
+          </h5>
+          <video 
+            src="/src/assets/rsnnvids/random_policy.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            style="width: 100%; border-radius: 4px; background: #000; height: 120px; object-fit: cover;">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div style="background: #f8f9fa; padding: 0.4rem 0.7rem 0.5rem 0.7rem; border-radius: 8px; width: 160px; display: flex; flex-direction: column;">
+          <h5 style="font-size: 0.92rem; font-weight: 600; color: #333333; margin-top: 0; margin-bottom: 0.25rem; white-space: nowrap;">
+            Naive <span style="color: #888; font-weight: 400;">(avg: 42.12)</span>
+          </h5>
+          <video 
+            src="/src/assets/rsnnvids/naive_policy.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            style="width: 100%; border-radius: 4px; background: #000; height: 120px; object-fit: cover;">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSNN Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; color: #333333; margin-bottom: 1rem;">Recurrent Spiking Neural Networks</h2>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      Recurrent Spiking Neural Networks (RSNNs) are a class of artificial neural networks that combine two key features: recurrence and spiking dynamics.
+    </p>
+    <ul style="color: #555555; margin: 0 0 1.5rem 1.2rem; line-height: 1.6; font-size: 1rem;">
+      <li>
+        <strong>Recurrent:</strong> The network contains connections that loop back, allowing information to persist over time. This enables the network to maintain an internal memory of past inputs, which is crucial for tasks where the current observation is insufficient to determine the optimal action—such as in partially observable environments like this version of CartPole. These internal “loops” of activating neurons are one of the mechanisms put forward to explain how short term memory functions in humans, though our understanding of all the mechanisms involved is still murky.
+      </li>
+      <li>
+        <strong>Spiking:</strong> Unlike traditional neural networks that use continuous activations, spiking neurons communicate via discrete events ("spikes") that occur when a neuron's activation level crosses a threshold. In this project, each neuron follows a leaky integrate-and-fire model: it integrates incoming spikes which increase voltage, the voltage decays over time in the absence of incoming spikes, and when the voltage exceeds a threshold it itself emits a spike and its internal voltage resets.
+      </li>
+    </ul>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      The combination of recurrence and spiking enables RSNNs to process sequences of inputs and to infer hidden variables—such as the unobserved velocities in CartPole—by integrating information over time. However, the non-differentiable nature of spiking makes these networks challenging to train with standard gradient-based methods.
+    </p>
+    <div style="margin-top: 2rem; margin-bottom: 0.5rem; text-align: center;">
+      <div style="display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;">
+        <div>
+          <img 
+            src="/src/assets/rsnn2.png" 
+            alt="RSNN architecture diagram"
+            style="max-width: 340px; width: 100%; height: 220px; object-fit: contain; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background: #fff;"
+          />
+          <div style="font-size: 0.68rem; color: #888; margin-top: 0.4rem; max-width: 340px; margin-left: auto; margin-right: auto;">
+            Rostami, Amirhossein &amp; Vogginger, Bernhard &amp; Yan, Yexin &amp; Mayr, Christian. (2022). E-prop on SpiNNaker 2: Exploring online learning in spiking RNNs on neuromorphic hardware. Frontiers in Neuroscience. 16. 10.3389/fnins.2022.1018006.
+          </div>
+        </div>
+        <div>
+          <img 
+            src="/src/assets/lif.png" 
+            alt="Leaky Integrate-and-Fire (LIF) neuron model diagram"
+            style="max-width: 340px; width: 100%; height: 220px; object-fit: contain; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); background: #fff;"
+          />
+          <div style="font-size: 0.68rem; color: #888; margin-top: 0.4rem; max-width: 340px; margin-left: auto; margin-right: auto;">
+            Kosta, Adarsh &amp; Roy, Kaushik. (2022). Adaptive-SpikeNet: Event-based Optical Flow Estimation using Spiking Neural Networks with Learnable Neuronal Dynamics. 10.48550/arXiv.2209.11741.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genetic Evolution Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; color: #333333; margin-bottom: 1rem;">Genetic Evolution</h2>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      To train the RSNN for the CartPole task, a genetic (evolutionary) algorithm is used. Evolutionary algorithms are well-suited for this problem because the spiking dynamics are non-differentiable, making gradient-based learning infeasible.
+    </p>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      Each individual agent in the population encodes a complete RSNN "genome," which specifies:
+      <ul style="color: #555555; margin: 0 0 1.2rem 1.2rem; line-height: 1.6; font-size: 1rem;">
+        <li><strong>Network topology:</strong> Which neurons are connected to which, including recurrent connections.</li>
+        <li><strong>Synaptic weights:</strong> The strength of each connection between neurons, and whether it's positive or negative.</li>
+        <li><strong>Neuron parameters:</strong> Properties such as voltage threshold for spiking and the rate at which voltage decays (leakiness).</li>
+      </ul>
+      At the start, all these parameters are initialized randomly. During each generation of evolution, the agents are evaluated on their ability to balance the pole. The best-performing agents are selected to reproduce, meaning their genome is duplicated, randomly mutated, and placed in the next generation. Over many generations, these random mutations allow evolution to discover effective combinations of structure and parameters that perform well on the task.
+    </p>
+    <p style="color: #555555; margin-bottom: 1.5rem; line-height: 1.6;">
+      This approach allows the discovery of both the architecture and the detailed dynamics of the spiking network, starting from pure randomness and without any hand-designed solutions.
+    </p>
+  </section>
+
+  <!-- Results Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; color: #333333; margin-bottom: 1rem;">Results</h2>
+    <p style="color: #555555; line-height: 1.6;">
+      The evolved RSNN consistently achieves stable control of the CartPole system using only partial observations, far surpassing the performance of all baseline policies. The RSNN effectively reconstructs the missing state variables over time through recurrent neural loops, forming a crude short term memory. Future work includes training the RSNN on more complex environments, and eventually attempting to build a mechanism for long term memory through allowing synapse modification over the course of a single agent-life.
+    </p>
+  </section>
+</Layout>

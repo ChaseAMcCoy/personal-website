@@ -1,11 +1,99 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import badgePhoto from "../assets/chase.jpg";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Chase McCoy">
+  <!-- Compressed Header Section -->
+  <header style="display: flex; align-items: center; gap: 1.7rem; margin-bottom: 2.2rem;">
+    <div style="flex-shrink: 0;">
+      <div style="width: 200px; height: 200px; border-radius: 8px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #e5e5e5;">
+        <img src={badgePhoto.src} alt="Chase McCoy" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+    </div>
+    <div>
+      <h1 style="font-size: 4rem; font-weight: 700; color: #222; margin: 0 0 0.2rem 0; letter-spacing: -0.5px;">Chase McCoy</h1>
+      <a style="text-decoration: none; font-size: 0.98rem;">chasemccoy.a@gmail.com</a>
+    </div>
+  </header>
+
+  <!-- Work Experience Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.08rem; font-weight: 600; color: #222; margin-bottom: 0.8rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.2rem;">Work Experience</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+      <div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between;">
+          <h3 style="font-size: 1rem; font-weight: 600; color: #333; margin: 0;">Amazon</h3>
+          <span style="color: #888; font-size: 0.85rem;">2023-Present</span>
+        </div>
+        <div style="color: #666; font-size: 0.93rem; margin-bottom: 0.1rem;">Software Development Engineer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.08rem; font-weight: 600; color: #222; margin-bottom: 0.8rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.2rem;">Education</h2>
+    <div>
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <h3 style="font-size: 0.98rem; font-weight: 600; color: #333; margin: 0;">Purdue University</h3>
+        <span style="color: #888; font-size: 0.85rem;">2019-2023</span>
+      </div>
+      <div style="color: #666; font-size: 0.93rem; margin-bottom: 0.1rem;">B.S. in Computer Engineering</div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.08rem; font-weight: 500; color: #222; margin-bottom: 0.8rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.2rem;">Personal Projects</h2>
+    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem;">
+      <li>
+        <a 
+          href="/projects/rsnn-cartpole"
+          style="
+            font-size: 1rem;
+            color: #1565c0;
+            text-decoration: underline;
+            font-weight: 400;
+            display: inline;
+            padding: 0;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+            cursor: pointer;
+            line-height: 1.5;
+          "
+        >
+          Evolving a Recurrent Spiking Neural Network on a Partially Observable Variant of CartPole
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Opinions Section -->
+  <section style="margin-bottom: 2.2rem;">
+    <h2 style="font-size: 1.08rem; font-weight: 500; color: #222; margin-bottom: 0.8rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.2rem;">Opinions</h2>
+    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem;">
+      <li>
+        <a 
+          href="/opinions/minecraft-bot"
+          style="
+            font-size: 1rem;
+            color: #1565c0;
+            text-decoration: underline;
+            font-weight: 400;
+            display: inline;
+            padding: 0;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+            cursor: pointer;
+            line-height: 1.5;
+          "
+        >
+          The world's first superintelligence will be a Minecraft bot
+        </a>
+      </li>
+    </ul>
+  </section>
 </Layout>
