@@ -1,17 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<Layout title="The world's first superintelligence will be a Minecraft bot">  
-  <p style="font-size: 1rem; color: #666;">
-    Full length argument in progress!
-  </p>
-  <div style="margin-top: 1.7rem; color: #999; font-size: 0.97rem; line-height: 1.6;">
+<Layout title="The world's first superintelligence will be a Minecraft bot">
+  <a 
+    href={baseUrl}
+    style="
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    "
+    onmouseover="this.style.color='#333';"
+    onmouseout="this.style.color='#666';"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+    Back to home
+  </a>
+  <div style="margin-top: 1rem; color: #999; font-size: 0.97rem; line-height: 1.6;">
     <em>
       Coming soon:
       <br />
       1. An AI that is better than us at Minecraft is a superintelligence<br />
       2. An AI that is not better than us at Minecraft is not a superintelligence<br />
-      3. Training an AI specifically on Minecraft is the probably the best way to achieve this
+      3. Training an AI specifically on Minecraft is the probably the best way to build an AI that is better than us at Minecraft
     </em>
   </div>
